@@ -8,6 +8,28 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+```{r libraries}
+library(tidyverse) #For graphing and data cleaning 
+library(lubridate) #for date manipulation
+library(ggthemes)  #For even more plotting themes
+library(ggtext)   #For coloring text in labels
+library(naniar)  #for exploring missing labels
+library(gghighlight) #For highlighting values
+library(maps) # for map data
+library(ggthemes) # for themes, including theme_map()
+library(gganimate)# for animation
+
+theme_set(theme_minimal()) #ggplot theme
+```
+
+```{r}
+mobile <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-11-10/mobile.csv')
+landline <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-11-10/landline.csv')
+```
+```{r}
+landline%>%add_n_miss()%>% arrange(desc(n_miss_all))
+```
+
 
 ## R Markdown
 
